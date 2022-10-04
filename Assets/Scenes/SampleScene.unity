@@ -465,8 +465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae24eef47ea8e45b04fc8659bd7150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FallSpeedLimit: -4
-  DiveSpeedLimit: 0
+  GlideSpeedLimit: -2
+  FallSpeedLimit: -6
+  DiveSpeedLimit: -12
+  GlideGravity: 0.5
+  NormalGravity: 1
+  DiveGravity: 2
   SylviaSpeed: 5
   IsInAir: 0
   AirJumpsLeft: 2
