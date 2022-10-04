@@ -466,17 +466,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae24eef47ea8e45b04fc8659bd7150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GlideFallRate: 0.9
+  FallRate: 1
+  DiveFallRate: 2
   GlideSpeedLimit: -2
   FallSpeedLimit: -6
   DiveSpeedLimit: -12
-  GlideGravity: 1
-  NormalGravity: 2
-  DiveGravity: 4
   SylviaSpeed: 5
   IsInAir: 0
   AirJumpsLeft: 2
-  GroundJumpForce: 12
-  AirJumpForce: 8
+  GroundJumpForce: 10
+  AirJumpForce: 6
   GCD: {fileID: 1829924010}
 --- !u!1 &1521970020
 GameObject:
