@@ -8,6 +8,9 @@ public class SylviaBehaviour : MonoBehaviour
     private bool isShadowMorphed;
     private bool isGliding;
 
+    //Used to make sure jumps use the same force in respects to Gravity
+    //private float currentGravity;
+
     //Different fall speed limits for Syvlia
     public float GlideSpeedLimit;
     public float FallSpeedLimit;
@@ -64,7 +67,7 @@ public class SylviaBehaviour : MonoBehaviour
         //Glide Code
 
         //When Glide Is Pressed
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsInAir)
         {
             isGliding = true;
             //Gliding and Diving Cancel eachother out
@@ -76,7 +79,7 @@ public class SylviaBehaviour : MonoBehaviour
         }
 
         //When Glide Is Released
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || IsInAir == false)
         {
             isGliding = false;
             //Reseting Gravity
@@ -87,7 +90,7 @@ public class SylviaBehaviour : MonoBehaviour
         //Diving Code
 
         //When Diving Is Pressed
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && IsInAir)
         {
             isDiving = true;
             //Gliding and Diving Cancel eachother out
@@ -99,7 +102,7 @@ public class SylviaBehaviour : MonoBehaviour
         }
 
         //When Diving Is Released
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S) || IsInAir == false)
         {
             isDiving = false;
             //Reseting Gravity
