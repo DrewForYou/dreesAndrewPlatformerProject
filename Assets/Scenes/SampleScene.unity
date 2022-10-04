@@ -465,6 +465,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae24eef47ea8e45b04fc8659bd7150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FallSpeedLimit: -4
+  DiveSpeedLimit: 0
+  SylviaSpeed: 5
+  IsInAir: 0
+  AirJumpsLeft: 2
+  GroundJumpForce: 10
+  AirJumpForce: 6
+  GCD: {fileID: 1829924010}
 --- !u!1 &1521970020
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829924008}
   - component: {fileID: 1829924009}
+  - component: {fileID: 1829924010}
   m_Layer: 0
   m_Name: GroundContact
   m_TagString: GroundCollider
@@ -745,3 +754,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7863839, y: 0.13362932}
   m_EdgeRadius: 0
+--- !u!114 &1829924010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829924007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554b1d31f220f4c41b41b02651b91abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sylvia: {fileID: 995311977}

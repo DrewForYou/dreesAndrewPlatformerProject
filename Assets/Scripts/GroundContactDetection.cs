@@ -18,12 +18,29 @@ public class GroundContactDetection : MonoBehaviour
     {
         if(collision.transform.tag == "Platform")
         {
+            if(Sylvia.AirJumpsLeft != 2)
+            {
+                Sylvia.AirJumpsLeft = 2;
+                Debug.Log("Jumps Reset");
+            }
             
+            if(Sylvia.IsInAir)
+            {
+                Sylvia.IsInAir = false;
+                Debug.Log("On Ground");
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if(collision.transform.tag == "Platform")
+        {
+            if (Sylvia.IsInAir == false)
+            {
+                Sylvia.IsInAir = true;
+                Debug.Log("In Air");
+            }
+        }
     }
 }

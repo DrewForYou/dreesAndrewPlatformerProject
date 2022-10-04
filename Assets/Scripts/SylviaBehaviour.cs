@@ -6,7 +6,11 @@ public class SylviaBehaviour : MonoBehaviour
 {
     private bool isDiving;
     private bool isShadowMorphed;
-    private bool isInAir;
+    
+    public float FallSpeedLimit;
+    public float DiveSpeedLimit;
+    public float SylviaSpeed;
+    public bool IsInAir;
     public int AirJumpsLeft;
     public float GroundJumpForce;
     public float AirJumpForce;
@@ -18,19 +22,41 @@ public class SylviaBehaviour : MonoBehaviour
     {
         isDiving = false;
         isShadowMorphed = false;
-        isInAir = false;
+        IsInAir = false;
         AirJumpsLeft = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vector2
-    }
+        //holds current velocity for each function
+        Vector2 hold = GetComponent<Rigidbody2D>().velocity;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxis("Horizontal") * SylviaSpeed,  hold.y);
 
-    public void ResetAirJumps()
-    {
-        AirJumpsLeft = 2;
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            hold = GetComponent<Rigidbody2D>().velocity;
+            if (IsInAir == false)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, GroundJumpForce);
+            }
+
+            else if (IsInAir == true && AirJumpsLeft != 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, AirJumpForce);
+                AirJumpsLeft -= 1;
+            }
+        }
+
+        if(isDiving == false)
+        {
+            hold = GetComponent<Rigidbody2D>().velocity;
+
+            //the Mathf.clamp limites the minimum fall speed to the fall speed limit, and sets the maximum to the sum of
+            //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
+            GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
+        }
     }
 
 }
