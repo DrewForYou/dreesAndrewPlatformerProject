@@ -74,7 +74,7 @@ public class SylviaBehaviour : MonoBehaviour
             isDiving = false;
 
             //Setting gravity
-            GetComponent<Rigidbody2D>().gravityScale = GlideGravity;
+            //GetComponent<Rigidbody2D>().gravityScale = GlideGravity;
             Debug.Log("Glide");
         }
 
@@ -83,7 +83,7 @@ public class SylviaBehaviour : MonoBehaviour
         {
             isGliding = false;
             //Reseting Gravity
-            GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
+            //GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
         }
 
 
@@ -97,7 +97,7 @@ public class SylviaBehaviour : MonoBehaviour
             isGliding = false;
 
             //Setting Gravity
-            GetComponent<Rigidbody2D>().gravityScale = DiveGravity;
+            //GetComponent<Rigidbody2D>().gravityScale = DiveGravity;
             Debug.Log("Dive");
         }
 
@@ -106,16 +106,29 @@ public class SylviaBehaviour : MonoBehaviour
         {
             isDiving = false;
             //Reseting Gravity
-            GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
+            //GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
         }
 
 
         //Fall Speed Limit Code
+        //Eventually I'd like to make the Gravity Change only happen when Y is Negatvie
         
         //Glide Speed
         if (isGliding)
         {
             hold = GetComponent<Rigidbody2D>().velocity;
+
+            //Setting Gravity Change to Only Occur when it has a negative Y
+            if(hold.y < 0)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = GlideGravity;
+            }
+            //Makes sure to change gravity back to normal if not already set to normal
+            else if(GetComponent<Rigidbody2D>().gravityScale != NormalGravity)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
+            }
+
             //the Mathf.clamp limites the minimum fall speed to the GlideSpeedLimit, and sets the maximum to the sum of
             //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, GlideSpeedLimit, AirJumpForce + GroundJumpForce));
@@ -125,15 +138,33 @@ public class SylviaBehaviour : MonoBehaviour
         else if(isDiving)
         {
             hold = GetComponent<Rigidbody2D>().velocity;
-            //the Mathf.clamp limites the minimum fall speed to the DiveSpeedLimit, and sets the maximum to the sum of
-            //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
-            GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, DiveSpeedLimit, AirJumpForce + GroundJumpForce));
+
+            //Setting Gravity Change to Only Occur when it has a negative Y
+            if (hold.y < 0)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = DiveGravity;
+            }
+            //Makes sure to change gravity back to normal if not already set to normal
+            else if (GetComponent<Rigidbody2D>().gravityScale != NormalGravity)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
+            }
+
+            //the Mathf.clamp limites the minimum fall speed to the DiveSpeedLimit, and sets max to 0 to speed up fall
+            GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, DiveSpeedLimit, 0.0f));
         }
 
         //Normal Fall Speed
         else
         {
             hold = GetComponent<Rigidbody2D>().velocity;
+
+            //Makes sure to change gravity back to normal if not already set to normal
+            if (GetComponent<Rigidbody2D>().gravityScale != NormalGravity)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
+            }
+
             //the Mathf.clamp limites the minimum fall speed to the FallSpeedLimit, and sets the maximum to the sum of
             //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
