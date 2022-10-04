@@ -34,7 +34,7 @@ public class SylviaBehaviour : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxis("Horizontal") * SylviaSpeed,  hold.y);
 
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             hold = GetComponent<Rigidbody2D>().velocity;
             if (IsInAir == false)
