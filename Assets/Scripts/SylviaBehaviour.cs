@@ -51,7 +51,7 @@ public class SylviaBehaviour : MonoBehaviour
     {
         //holds current velocity for each function
         Vector2 hold = GetComponent<Rigidbody2D>().velocity;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxis("Horizontal") * SylviaSpeed,  hold.y);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxisRaw("Horizontal") * SylviaSpeed,  hold.y);
 
         
         if (Input.GetKeyDown(KeyCode.W))
@@ -180,7 +180,10 @@ public class SylviaBehaviour : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
             }
             */
-            hold.y = hold.y * FallRate;
+            if (hold.y < 0)
+            {
+                hold.y = hold.y * FallRate;
+            }
             //the Mathf.clamp limites the minimum fall speed to the FallSpeedLimit, and sets the maximum to the sum of
             //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
