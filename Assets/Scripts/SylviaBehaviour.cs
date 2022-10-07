@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SylviaBehaviour : MonoBehaviour
 {
-    private bool isDiving;
-    private bool isShadowMorphed;
-    private bool isGliding;
+    public bool IsDiving;
+    public bool IsShadowMorphed;
+    public bool IsGliding;
 
     //Used to make sure jumps use the same force in respects to Gravity
     //private float currentGravity;
@@ -40,8 +40,9 @@ public class SylviaBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isDiving = false;
-        isShadowMorphed = false;
+        IsDiving = false;
+        IsShadowMorphed = false;
+        IsGliding = false;
         IsInAir = false;
         AirJumpsLeft = 2;
     }
@@ -53,6 +54,11 @@ public class SylviaBehaviour : MonoBehaviour
         Vector2 hold = GetComponent<Rigidbody2D>().velocity;
         GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxisRaw("Horizontal") * SylviaSpeed, hold.y);
 
+        //makes sure Sylvia is not shadowmorphed in the air.
+        if (IsInAir && IsShadowMorphed)
+        {
+            IsShadowMorphed = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -77,9 +83,9 @@ public class SylviaBehaviour : MonoBehaviour
         //When Glide Is Pressed
         if (Input.GetKeyDown(KeyCode.Space) && IsInAir)
         {
-            isGliding = true;
+            IsGliding = true;
             //Gliding and Diving Cancel eachother out
-            isDiving = false;
+            IsDiving = false;
 
             //Setting gravity
             //GetComponent<Rigidbody2D>().gravityScale = GlideGravity;
@@ -89,7 +95,7 @@ public class SylviaBehaviour : MonoBehaviour
         //When Glide Is Released
         if (Input.GetKeyUp(KeyCode.Space) || IsInAir == false)
         {
-            isGliding = false;
+            IsGliding = false;
             //Reseting Gravity
             //GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
         }
@@ -100,9 +106,9 @@ public class SylviaBehaviour : MonoBehaviour
         //When Diving Is Pressed
         if (Input.GetKeyDown(KeyCode.S) && IsInAir)
         {
-            isDiving = true;
+            IsDiving = true;
             //Gliding and Diving Cancel eachother out
-            isGliding = false;
+            IsGliding = false;
 
             //Setting Gravity
             //GetComponent<Rigidbody2D>().gravityScale = DiveGravity;
@@ -112,7 +118,7 @@ public class SylviaBehaviour : MonoBehaviour
         //When Diving Is Released
         if (Input.GetKeyUp(KeyCode.S) || IsInAir == false)
         {
-            isDiving = false;
+            IsDiving = false;
             //Reseting Gravity
             //GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
         }
@@ -122,7 +128,7 @@ public class SylviaBehaviour : MonoBehaviour
         //Eventually I'd like to make the Gravity Change only happen when Y is Negatvie
 
         //Glide Speed
-        if (isGliding)
+        if (IsGliding)
         {
 
             hold = GetComponent<Rigidbody2D>().velocity;
@@ -146,7 +152,7 @@ public class SylviaBehaviour : MonoBehaviour
         }
 
         //Dive Speed
-        else if (isDiving)
+        else if (IsDiving)
         {
             hold = GetComponent<Rigidbody2D>().velocity;
 
@@ -189,5 +195,8 @@ public class SylviaBehaviour : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.transform.tag);
+    }
 }
