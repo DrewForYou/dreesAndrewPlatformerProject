@@ -34,7 +34,10 @@ public class SylviaBehaviour : MonoBehaviour
     public int AirJumpsLeft;
     public float GroundJumpForce;
     public float AirJumpForce;
+    public bool IsInvincible;
 
+    public GameController GC;
+    //public ShadowMorphBehaviour SMB;
     public GroundContactDetection GCD;
 
     // Start is called before the first frame update
@@ -43,6 +46,7 @@ public class SylviaBehaviour : MonoBehaviour
         IsDiving = false;
         IsShadowMorphed = false;
         IsGliding = false;
+        IsInvincible = false;
         IsInAir = false;
         AirJumpsLeft = 2;
     }
@@ -53,6 +57,12 @@ public class SylviaBehaviour : MonoBehaviour
         //holds current velocity for each function
         Vector2 hold = GetComponent<Rigidbody2D>().velocity;
         GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxisRaw("Horizontal") * SylviaSpeed, hold.y);
+
+        //Shadowmorph Code
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            IsShadowMorphed = !IsShadowMorphed;
+        }
 
         //makes sure Sylvia is not shadowmorphed in the air.
         if (IsInAir && IsShadowMorphed)
@@ -123,7 +133,7 @@ public class SylviaBehaviour : MonoBehaviour
             //GetComponent<Rigidbody2D>().gravityScale = NormalGravity;
         }
 
-
+        
         //Fall Speed Limit Code
         //Eventually I'd like to make the Gravity Change only happen when Y is Negatvie
 
@@ -170,7 +180,7 @@ public class SylviaBehaviour : MonoBehaviour
             }
             */
 
-            //the Mathf.clamp limites the minimum fall speed to the DiveSpeedLimit, and sets max to 0 to speed up fall
+            //the Mathf.clamp limites the minimum fall speed to the DiveSpeedLimit, /*and sets max to 0 to speed up fall*/
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, DiveSpeedLimit, 0.0f));
         }
 
@@ -194,9 +204,50 @@ public class SylviaBehaviour : MonoBehaviour
             //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
             GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
         }
+
+        //Shadowmorph Code
+        if(IsShadowMorphed != GetComponent<Animator>().GetBool("ShadowmorphActive"))
+        {
+            //Have tags changes and go back to animation to see if you can have somethingTrigger when that animation ends
+            //So that it works. ALso see about tag things...Tired go to bed.
+            GetComponent<Animator>().SetBool("ShadowmorphActive", IsShadowMorphed);
+            
+            //SylviaShadowmorphTransitions();
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.transform.tag);
+
+        if(collision.transform.tag == "Enemy" && !IsInvincible)
+        {
+            Hurt();
+        }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(IsInvincible)
+        {
+            IsInvincible = false;
+        }
+    }
+
+    //Damage Update Code
+    private void Hurt()
+    {
+        GC.UpdateHealth();
+        Debug.Log("Ouch");
+        IsInvincible = true;
+    }
+
+    //Code for SylviaToShadowmorph and ShadowmorphToSylvia Animations
+    /*private void SylviaShadowmorphTransitions()
+    {
+        if(GetComponent<Animator>().GetBool("ShadowmorphActive"))
+        { 
+
+        }
+
+    }*/
+
 }

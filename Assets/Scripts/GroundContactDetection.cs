@@ -24,11 +24,24 @@ public class GroundContactDetection : MonoBehaviour
                 Debug.Log("Jumps Reset");
             }
             
+            //turns off IsInAir 
             if(Sylvia.IsInAir)
             {
-                Sylvia.IsInAir = false;
-                Debug.Log("On Ground");
+                //Checks to see if Sylvia was diving before the collision
+                if (Sylvia.IsDiving)
+                {
+                    Sylvia.IsInAir = false;
+                    Sylvia.IsShadowMorphed = true;
+                    Debug.Log("Dived to Ground");
+                }
+                else
+                {
+                    Sylvia.IsInAir = false;
+                    Debug.Log("On Ground");
+                }
             }
+
+            
         }
     }
 
