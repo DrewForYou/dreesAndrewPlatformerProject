@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SylviaBehaviour : MonoBehaviour
 {
+    //Ignore the inconsistency with Shadowmorph being spelled ShadowMorph, I'm aware
     public bool IsDiving;
     public bool IsShadowMorphed;
     public bool IsGliding;
@@ -211,7 +212,21 @@ public class SylviaBehaviour : MonoBehaviour
             //Have tags changes and go back to animation to see if you can have somethingTrigger when that animation ends
             //So that it works. ALso see about tag things...Tired go to bed.
             GetComponent<Animator>().SetBool("ShadowmorphActive", IsShadowMorphed);
-            
+            if (IsShadowMorphed)
+            {
+                
+                /*
+                int ShadowmorphLayer = LayerMask.NameToLayer("ShadowMorph");
+                gameObject.layer = ShadowmorphLayer;
+                */
+            }
+            else
+            {
+                /*
+                int SylivaLayer = LayerMask.NameToLayer("Sylvia");
+                gameObject.layer = SylivaLayer;
+                */
+            }
             //SylviaShadowmorphTransitions();
         }
     }
@@ -233,7 +248,7 @@ public class SylviaBehaviour : MonoBehaviour
     }
 
     //Damage Update Code
-    private void Hurt()
+    public void Hurt()
     {
         GC.UpdateHealth();
         Debug.Log("Ouch");

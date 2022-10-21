@@ -11,6 +11,7 @@ TagManager:
   - ShadowGlass
   - ShadowPlatform
   - GroundCollider
+  - Sign
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 993115443
+    locked: 0
+  - name: Collidable background
+    uniqueID: 275748991
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
