@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public int Hearts;
-
+    public TMP_Text Health;
     void Start()
     {
         
@@ -21,5 +23,11 @@ public class GameController : MonoBehaviour
     public void UpdateHealth()
     {
         Hearts--;
+        Health.text = "Health: " + Hearts;
+        if(Hearts == 0)
+        {
+            //Fix for other levels
+            SceneManager.LoadScene(0);
+        }
     }
 }

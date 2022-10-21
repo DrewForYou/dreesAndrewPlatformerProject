@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
                 Sylvia.Hurt();
         }
         */
-        if (Sylvia.IsShadowMorphed)
+        if (collision.gameObject.GetComponent<SylviaBehaviour>())
         {
             Sylvia.Hurt();
         }
