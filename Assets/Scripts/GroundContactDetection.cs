@@ -6,7 +6,7 @@ public class GroundContactDetection : MonoBehaviour
 {
     // Start is called before the first frame update
     public SylviaBehaviour Sylvia;
-
+    public bool IsOnShadowPlatform;
 
     // Update is called once per frame
     void Update()
@@ -16,12 +16,19 @@ public class GroundContactDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Platform")
+        if(collision.transform.tag == "Platform" || collision.transform.tag == "ShadowPlatform")
         {
-            if(Sylvia.AirJumpsLeft != 2)
+            //Checks to see if on a ShadowPlatform
+            if(collision.transform.tag == "ShadowPlatform")
+            {
+                IsOnShadowPlatform = true;
+            }
+
+            //Resets Air Jumps
+            if (Sylvia.AirJumpsLeft != 2)
             {
                 Sylvia.AirJumpsLeft = 2;
-                Debug.Log("Jumps Reset");
+                //Debug.Log("Jumps Reset");
             }
             
             //turns off IsInAir 
@@ -32,12 +39,12 @@ public class GroundContactDetection : MonoBehaviour
                 {
                     Sylvia.IsInAir = false;
                     Sylvia.IsShadowMorphed = true;
-                    Debug.Log("Dived to Ground");
+                    //Debug.Log("Dived to Ground");
                 }
                 else
                 {
                     Sylvia.IsInAir = false;
-                    Debug.Log("On Ground");
+                    //Debug.Log("On Ground");
                 }
             }
 
@@ -47,12 +54,25 @@ public class GroundContactDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Platform")
+        if(collision.transform.tag == "ShadowPlatform")
         {
+            IsOnShadowPlatform = false;
+            
             if (Sylvia.IsInAir == false)
             {
                 Sylvia.IsInAir = true;
-                Debug.Log("In Air");
+                //Debug.Log("In Air");
+            }
+        }
+        else if(collision.transform.tag == "Platform")
+        {
+            if(!IsOnShadowPlatform)
+            {
+                if (Sylvia.IsInAir == false)
+                {
+                    Sylvia.IsInAir = true;
+                    //Debug.Log("In Air");
+                }
             }
         }
     }

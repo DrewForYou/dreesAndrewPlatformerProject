@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     
     public int Hearts;
     public TMP_Text Health;
+    public bool GamePaused;
     void Start()
     {
         

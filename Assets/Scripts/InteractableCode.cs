@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableCode : MonoBehaviour
 {
     public bool CanInteract;
+    public GameObject GetSign;
 
     private void Awake()
     {
@@ -15,20 +16,21 @@ public class InteractableCode : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && CanInteract)
         {
-            Debug.Log("Interacted");
+            //Debug.Log("Interacted");
+            GetSign.gameObject.SetActive(true);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entered Interactable");
+        //Debug.Log("Entered Interactable");
         CanInteract = true;
     }
     
     
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exited Interactable");
+        //Debug.Log("Exited Interactable");
         CanInteract = false;
     }
 }
