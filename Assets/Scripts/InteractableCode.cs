@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractableCode : MonoBehaviour
 {
     public bool CanInteract;
-    public GameObject GetSign;
+    public GameObject GetObject;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class InteractableCode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && CanInteract)
         {
             //Debug.Log("Interacted");
-            GetSign.gameObject.SetActive(true);
+            GetObject.gameObject.SetActive(true);
         }
     }
 

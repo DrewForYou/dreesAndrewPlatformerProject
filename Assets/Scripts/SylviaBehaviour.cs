@@ -37,6 +37,10 @@ public class SylviaBehaviour : MonoBehaviour
     public float AirJumpForce;
     public bool IsInvincible;
 
+    public Vector2 HoldVelocity;
+    public bool PausedOrUnpaused;
+    public float GrabGravity;
+
     public GameController GC;
     //public ShadowMorphBehaviour SMB;
     public GroundContactDetection GCD;
@@ -51,6 +55,7 @@ public class SylviaBehaviour : MonoBehaviour
         IsInAir = false;
         AirJumpsLeft = 2;
         GC = FindObjectOfType<GameController>();
+        GrabGravity = GetComponent<Rigidbody2D>().gravityScale;
     }
 
     // Update is called once per frame
@@ -233,6 +238,13 @@ public class SylviaBehaviour : MonoBehaviour
                 //SylviaShadowmorphTransitions();
             }
         }
+        /*else
+        {
+            if(PausedOrUnpaused)
+            {
+
+            }
+        }*/
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -257,6 +269,22 @@ public class SylviaBehaviour : MonoBehaviour
         GC.UpdateHealth();
         Debug.Log("Ouch");
         IsInvincible = true;
+    }
+
+    //Holds onto Sylvia's velocity when the game is paused
+    public void HoldOntoVelocity()
+    {
+        HoldVelocity = GetComponent<Rigidbody2D>().velocity;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+        
+    }
+
+    //Sets Sylvia to the velocity she had before the game was paused
+    public void ReturnToVelocity()
+    {
+        GetComponent<Rigidbody2D>().gravityScale = GrabGravity;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(HoldVelocity.x, HoldVelocity.y);
     }
 
     //Code for SylviaToShadowmorph and ShadowmorphToSylvia Animations

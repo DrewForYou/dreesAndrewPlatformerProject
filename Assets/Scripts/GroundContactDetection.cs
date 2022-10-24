@@ -16,10 +16,10 @@ public class GroundContactDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "Platform" || collision.transform.tag == "ShadowPlatform")
+        if(collision.transform.tag == "Platform" || collision.transform.tag == "ShadowGlass")
         {
             //Checks to see if on a ShadowPlatform
-            if(collision.transform.tag == "ShadowPlatform")
+            if(collision.transform.tag == "ShadowGlass")
             {
                 IsOnShadowPlatform = true;
             }
@@ -54,7 +54,7 @@ public class GroundContactDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.tag == "ShadowPlatform")
+        if(collision.transform.tag == "ShadowGlass")
         {
             IsOnShadowPlatform = false;
             

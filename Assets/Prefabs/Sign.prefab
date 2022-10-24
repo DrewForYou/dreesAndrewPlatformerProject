@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanInteract: 0
-  GetSign: {fileID: 1360934190559383091}
+  GetObject: {fileID: 1360934190559383091}
 --- !u!1 &4885578115168429975
 GameObject:
   m_ObjectHideFlags: 0
