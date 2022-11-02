@@ -2266,6 +2266,8 @@ MonoBehaviour:
   Health: {fileID: 1990574273}
   TextBoxText: {fileID: 1194679364}
   TextBox: {fileID: 223623037}
+  LoseScreen: {fileID: 0}
+  WinScren: {fileID: 0}
   GamePaused: 0
   Sylvia: {fileID: 0}
 --- !u!1 &1617005199
@@ -3643,6 +3645,10 @@ PrefabInstance:
     - target: {fileID: 6467709712756541345, guid: ec69c7ec032a9bf419595e46c7e98a83, type: 3}
       propertyPath: m_Name
       value: Backbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467709712756541345, guid: ec69c7ec032a9bf419595e46c7e98a83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6467709712756541346, guid: ec69c7ec032a9bf419595e46c7e98a83, type: 3}
       propertyPath: m_Pivot.x

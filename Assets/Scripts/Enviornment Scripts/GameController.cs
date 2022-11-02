@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
             var currentScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(currentScene.name);*/
             LoseScreen.gameObject.SetActive(true);
+            GamePaused = true;
         }
     }
 
