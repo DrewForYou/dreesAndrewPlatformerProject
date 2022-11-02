@@ -22,6 +22,7 @@ public class ShadowGlassBehaviour : MonoBehaviour
         }
         else if(DiveThrough && Sylvia.IsDiving)
         {
+            Debug.Log("Dive");
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Sylvia.GetComponent<Collider2D>());
         }
         else

@@ -41,7 +41,7 @@ public class GroundContactDetection : MonoBehaviour
             if(Sylvia.IsInAir)
             {
                 //Checks to see if Sylvia was diving before the collision
-                if (Sylvia.IsDiving)
+                if (Sylvia.IsDiving /*&& collision.transform.tag != "ShadowGlass"*/)
                 {
                     Sylvia.IsInAir = false;
                     Sylvia.IsShadowMorphed = true;
