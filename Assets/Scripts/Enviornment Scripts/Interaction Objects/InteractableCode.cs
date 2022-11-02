@@ -6,6 +6,7 @@ public class InteractableCode : MonoBehaviour
 {
     public bool CanInteract;
     public GameObject GetObject;
+    public Canvas InteractIcon;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class InteractableCode : MonoBehaviour
     {
         //Debug.Log("Entered Interactable");
         CanInteract = true;
+        InteractIcon.gameObject.SetActive(true);
     }
     
     
@@ -32,5 +34,6 @@ public class InteractableCode : MonoBehaviour
     {
         //Debug.Log("Exited Interactable");
         CanInteract = false;
+        InteractIcon.gameObject.SetActive(false);
     }
 }

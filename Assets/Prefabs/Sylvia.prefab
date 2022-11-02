@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5965432765354631856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3199882369368460062}
+  - component: {fileID: 4261436419292720770}
+  m_Layer: 0
+  m_Name: PreventClipping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3199882369368460062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965432765354631856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.002214583}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6944743116069262070}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4261436419292720770
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965432765354631856}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0063107014, y: 0.11296767}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8553119, y: 1.4682292}
+  m_EdgeRadius: 0
 --- !u!1 &6944743115572063202
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6944743115572063202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 4, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60,7 +118,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -120,6 +178,7 @@ Transform:
   - {fileID: 6944743116979371830}
   - {fileID: 6944743115572063006}
   - {fileID: 6944743116273274141}
+  - {fileID: 3199882369368460062}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -243,12 +302,15 @@ MonoBehaviour:
   GlideSpeedLimit: -2
   FallSpeedLimit: -12
   DiveSpeedLimit: -18
-  SylviaSpeed: 5
+  SylviaSpeed: 8
   IsInAir: 0
   AirJumpsLeft: 2
   GroundJumpForce: 10
   AirJumpForce: 7
   IsInvincible: 0
+  HoldVelocity: {x: 0, y: 0}
+  PausedOrUnpaused: 0
+  GrabGravity: 0
   GC: {fileID: 0}
   GCD: {fileID: 6944743116979371828}
 --- !u!95 &6944743116069262068
@@ -428,3 +490,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sylvia: {fileID: 6944743116069262071}
   IsOnShadowPlatform: 0
+  IsOnPlatform: 0

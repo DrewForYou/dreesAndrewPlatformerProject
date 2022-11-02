@@ -7,6 +7,7 @@ public class GroundContactDetection : MonoBehaviour
     // Start is called before the first frame update
     public SylviaBehaviour Sylvia;
     public bool IsOnShadowPlatform;
+    public bool IsOnPlatform;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +23,11 @@ public class GroundContactDetection : MonoBehaviour
             if(collision.transform.tag == "ShadowGlass")
             {
                 IsOnShadowPlatform = true;
+            }
+
+            if(collision.transform.tag == "Platform")
+            {
+                IsOnPlatform = true;
             }
 
             //Resets Air Jumps
@@ -58,7 +64,7 @@ public class GroundContactDetection : MonoBehaviour
         {
             IsOnShadowPlatform = false;
             
-            if (Sylvia.IsInAir == false)
+            if (Sylvia.IsInAir == false && !IsOnPlatform)
             {
                 Sylvia.IsInAir = true;
                 //Debug.Log("In Air");
@@ -66,13 +72,12 @@ public class GroundContactDetection : MonoBehaviour
         }
         else if(collision.transform.tag == "Platform")
         {
-            if(!IsOnShadowPlatform)
+            IsOnPlatform = false;
+
+            if (Sylvia.IsInAir == false && !IsOnShadowPlatform)
             {
-                if (Sylvia.IsInAir == false)
-                {
-                    Sylvia.IsInAir = true;
-                    //Debug.Log("In Air");
-                }
+                Sylvia.IsInAir = true;
+                //Debug.Log("In Air");
             }
         }
     }

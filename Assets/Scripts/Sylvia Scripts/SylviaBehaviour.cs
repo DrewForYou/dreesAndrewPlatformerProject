@@ -220,21 +220,21 @@ public class SylviaBehaviour : MonoBehaviour
                 //Have tags changes and go back to animation to see if you can have somethingTrigger when that animation ends
                 //So that it works. ALso see about tag things...Tired go to bed.
                 GetComponent<Animator>().SetBool("ShadowmorphActive", IsShadowMorphed);
-                if (IsShadowMorphed)
+                /*if (IsShadowMorphed)
                 {
 
-                    /*
+                    
                     int ShadowmorphLayer = LayerMask.NameToLayer("ShadowMorph");
                     gameObject.layer = ShadowmorphLayer;
-                    */
+                    
                 }
                 else
                 {
-                    /*
+                    
                     int SylivaLayer = LayerMask.NameToLayer("Sylvia");
                     gameObject.layer = SylivaLayer;
-                    */
-                }
+                    
+                } */
                 //SylviaShadowmorphTransitions();
             }
         }
@@ -259,7 +259,8 @@ public class SylviaBehaviour : MonoBehaviour
     {
         if(IsInvincible)
         {
-            IsInvincible = false;
+            GetComponent<Animator>().SetBool("SylivaHurt", false);
+            //IsInvincible = false;
         }
     }
 
@@ -267,8 +268,9 @@ public class SylviaBehaviour : MonoBehaviour
     public void Hurt()
     {
         GC.UpdateHealth();
+        GetComponent<Animator>().SetBool("SylivaHurt", true);
         Debug.Log("Ouch");
-        IsInvincible = true;
+        //IsInvincible = true;
     }
 
     //Holds onto Sylvia's velocity when the game is paused

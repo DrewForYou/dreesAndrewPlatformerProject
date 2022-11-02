@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanInteract: 0
   GetObject: {fileID: 1360934190559383091}
+  InteractIcon: {fileID: 4885578115459904046}
 --- !u!1 &4885578115168429975
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4885578115459904045
 RectTransform:
   m_ObjectHideFlags: 0

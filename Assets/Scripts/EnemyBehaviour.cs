@@ -12,7 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     //public Vector2 LeftLocate;
     //public Vector2 RightLocate;
     public float EnemySpeed;
-    public float EnemySize;
+    //public float EnemySize;
 
     private void Start()
     {
@@ -63,10 +63,10 @@ public class EnemyBehaviour : MonoBehaviour
         }
         */
         //hurts Sylvia when she is collided with
-        if (collision.gameObject.GetComponent<SylviaBehaviour>())
+        /*if (collision.gameObject.GetComponent<SylviaBehaviour>() && !Sylvia.IsInvincible)
         {
             Sylvia.Hurt();
-        }
+        }*/
     }
 
 }

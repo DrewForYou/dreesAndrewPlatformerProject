@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     public TMP_Text Health;
     public TMP_Text TextBoxText;
     public GameObject TextBox;
+    public GameObject LoseScreen;
+    public GameObject WinScren;
     public bool GamePaused;
     public SylviaBehaviour Sylvia;
     void Start()
@@ -28,18 +30,23 @@ public class GameController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.R))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            var currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
         }
     }
 
     public void UpdateHealth()
     {
         Hearts--;
+        
         Health.text = "Health: " + Hearts;
         if(Hearts == 0)
         {
+            /*
             //Fix for other levels
-            SceneManager.LoadScene(0);
+            var currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);*/
+            LoseScreen.gameObject.SetActive(true);
         }
     }
 
