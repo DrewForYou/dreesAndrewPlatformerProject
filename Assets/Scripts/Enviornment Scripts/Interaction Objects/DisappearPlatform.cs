@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RevealPlatform : MonoBehaviour
+public class DisappearPlatform : MonoBehaviour
 {
     //Sign that is interacted with
     public BasicSignBehaviour Sign;
     //the object to turn on
-    public GameObject ActivateMe;
+    public GameObject DeActivateMe;
 
     private void Update()
     {
-        if(Sign.isActiveAndEnabled)
+        if (Sign.isActiveAndEnabled)
         {
-            ActivateMe.SetActive(true);
+            DeActivateMe.SetActive(false);
         }
     }
-    /*
+/*
     //Activates the object
     public void ActivateObject()
     {
-        ActivateMe.SetActive(true);
+        DeActivateMe.SetActive(false);
     }*/
 }
