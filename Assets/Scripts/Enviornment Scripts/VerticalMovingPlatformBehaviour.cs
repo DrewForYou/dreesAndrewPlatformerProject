@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatformBehaviour : MonoBehaviour
+public class VerticalMovingPlatformBehaviour : MonoBehaviour
 {
     public GameController GameControl;
-    public Transform LeftBoundry;
-    public Transform RightBoundry;
+    public Transform UpperBoundry;
+    public Transform LowerBoundry;
     public SylviaBehaviour Sylvia;
-    
-    public float PlatformSpeed;
 
+    public float PlatformSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +25,12 @@ public class MovingPlatformBehaviour : MonoBehaviour
         {
             //Movement code
             Vector2 movePos = gameObject.transform.position;
-            movePos.x -= PlatformSpeed * Time.deltaTime;
+            movePos.y -= PlatformSpeed * Time.deltaTime;
             //Setting Boundries
-            movePos.x = Mathf.Clamp(movePos.x, LeftBoundry.position.x, RightBoundry.position.x);
+            movePos.y = Mathf.Clamp(movePos.y, LowerBoundry.position.y, UpperBoundry.position.y);
 
             //Switches direction when they reach the boundry
-            if (movePos.x == LeftBoundry.position.x || movePos.x == RightBoundry.position.x)
+            if (movePos.y == LowerBoundry.position.y || movePos.y == UpperBoundry.position.y)
             {
                 PlatformSpeed *= -1;
             }

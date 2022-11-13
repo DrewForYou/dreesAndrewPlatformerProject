@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3199882369368460062}
   - component: {fileID: 4261436419292720770}
+  - component: {fileID: 3032017498148182740}
   m_Layer: 0
   m_Name: PreventClipping
   m_TagString: Untagged
@@ -58,6 +59,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8553119, y: 1.4682292}
   m_EdgeRadius: 0
+--- !u!114 &3032017498148182740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5965432765354631856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e1e8f77bb904a848be75c0eb37907e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanDemorph: 0
 --- !u!1 &6944743115572063202
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +327,7 @@ MonoBehaviour:
   GrabGravity: 0
   GC: {fileID: 0}
   GCD: {fileID: 6944743116979371828}
+  Prevent: {fileID: 3032017498148182740}
 --- !u!95 &6944743116069262068
 Animator:
   serializedVersion: 4

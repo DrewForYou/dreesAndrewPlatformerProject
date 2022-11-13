@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class PreventClip : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool CanDemorph;
+
+    private void Start()
     {
-        
+        CanDemorph = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.tag != "sign")
+        {
+            CanDemorph = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        CanDemorph = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.tag != "sign")
+        {
+            if (CanDemorph)
+            {
+                CanDemorph = false;
+            }
+        }
         
     }
 }

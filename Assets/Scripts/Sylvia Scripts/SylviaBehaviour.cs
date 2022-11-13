@@ -44,6 +44,7 @@ public class SylviaBehaviour : MonoBehaviour
     public GameController GC;
     //public ShadowMorphBehaviour SMB;
     public GroundContactDetection GCD;
+    public PreventClip Prevent;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +71,18 @@ public class SylviaBehaviour : MonoBehaviour
             //Shadowmorph Code
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                IsShadowMorphed = !IsShadowMorphed;
+                if(IsShadowMorphed && Prevent.CanDemorph)
+                {
+                    IsShadowMorphed = !IsShadowMorphed;
+                }
+                else if (IsShadowMorphed && !Prevent.CanDemorph)
+                {
+
+                }
+                else
+                {
+                    IsShadowMorphed = !IsShadowMorphed;
+                }
             }
 
             //makes sure Sylvia is not shadowmorphed in the air.
@@ -237,6 +249,11 @@ public class SylviaBehaviour : MonoBehaviour
                 } */
                 //SylviaShadowmorphTransitions();
             }
+
+            /*if (IsShadowMorphed == false && !Prevent.CanDemorph)
+            {
+                IsShadowMorphed = true;
+            }*/
         }
         /*else
         {
