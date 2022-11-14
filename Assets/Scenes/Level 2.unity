@@ -2587,11 +2587,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4567603308940083870, guid: 027a577fa35a9fe478a39a38a6cd755a, type: 3}
       propertyPath: SignText.Array.data[0]
-      value: Your halfway there Sylvia.
+      value: '"Your halfway there Sylvia."'
       objectReference: {fileID: 0}
     - target: {fileID: 4567603308940083870, guid: 027a577fa35a9fe478a39a38a6cd755a, type: 3}
       propertyPath: SignText.Array.data[1]
-      value: Your halfway there Sylvia.
+      value: It's in Crystalis's handwriting
       objectReference: {fileID: 0}
     - target: {fileID: 4885578115497638869, guid: 027a577fa35a9fe478a39a38a6cd755a, type: 3}
       propertyPath: m_Name
@@ -3579,11 +3579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944743116069262070, guid: 60a5f227fa5b121409b55b93cd9097f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.4
+      value: -13.73999
       objectReference: {fileID: 0}
     - target: {fileID: 6944743116069262070, guid: 60a5f227fa5b121409b55b93cd9097f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.1
+      value: -2.7320251
       objectReference: {fileID: 0}
     - target: {fileID: 6944743116069262070, guid: 60a5f227fa5b121409b55b93cd9097f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6050,8 +6050,8 @@ Transform:
   - {fileID: 801105555}
   - {fileID: 1509629766}
   - {fileID: 1008726533}
-  - {fileID: 819608755}
   - {fileID: 1110703529}
+  - {fileID: 819608755}
   - {fileID: 1853362350}
   - {fileID: 2124497357}
   - {fileID: 1250189822}
