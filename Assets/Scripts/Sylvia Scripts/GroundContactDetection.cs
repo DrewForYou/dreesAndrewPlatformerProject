@@ -20,7 +20,7 @@ public class GroundContactDetection : MonoBehaviour
         if(collision.transform.tag == "Platform" || collision.transform.tag == "ShadowGlass")
         {
             //Checks to see if on a ShadowPlatform
-            if(collision.transform.tag == "ShadowGlass")
+            if(collision.transform.tag == "ShadowGlass" && !Sylvia.IsDiving)
             {
                 IsOnShadowPlatform = true;
             }
@@ -43,8 +43,11 @@ public class GroundContactDetection : MonoBehaviour
                 //Checks to see if Sylvia was diving before the collision
                 if (Sylvia.IsDiving /*&& collision.transform.tag != "ShadowGlass"*/)
                 {
-                    Sylvia.IsInAir = false;
-                    Sylvia.IsShadowMorphed = true;
+                    if(collision.transform.tag != "ShadowGlass")
+                    {
+                        Sylvia.IsInAir = false;
+                        Sylvia.IsShadowMorphed = true;
+                    }
                     //Debug.Log("Dived to Ground");
                 }
                 else
