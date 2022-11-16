@@ -13,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     //public Vector2 RightLocate;
     public float EnemySpeed;
     //public float EnemySize;
+    public SpriteRenderer EnemySprite;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (movePos.x == LeftBoundry.position.x || movePos.x == RightBoundry.position.x)
             {
                 EnemySpeed *= -1;
+                EnemySprite.flipX = !EnemySprite.flipX;
             }
             gameObject.transform.position = movePos;
         }
