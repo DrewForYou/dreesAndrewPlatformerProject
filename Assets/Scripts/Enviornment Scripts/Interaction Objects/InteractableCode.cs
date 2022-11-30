@@ -28,8 +28,14 @@ public class InteractableCode : MonoBehaviour
         CanInteract = true;
         InteractIcon.gameObject.SetActive(true);
     }
-    
-    
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //Debug.Log("Entered Interactable");
+        CanInteract = true;
+        InteractIcon.gameObject.SetActive(true);
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         //Debug.Log("Exited Interactable");
