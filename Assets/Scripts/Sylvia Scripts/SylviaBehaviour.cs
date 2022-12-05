@@ -36,6 +36,7 @@ public class SylviaBehaviour : MonoBehaviour
     public float GroundJumpForce;
     public float AirJumpForce;
     public bool IsInvincible;
+    public bool IsFacingLeft;
 
     public Vector2 HoldVelocity;
     public bool PausedOrUnpaused;
@@ -54,6 +55,7 @@ public class SylviaBehaviour : MonoBehaviour
         IsGliding = false;
         IsInvincible = false;
         IsInAir = false;
+        IsFacingLeft = false;
         AirJumpsLeft = 2;
         GC = FindObjectOfType<GameController>();
         GrabGravity = GetComponent<Rigidbody2D>().gravityScale;
@@ -74,14 +76,16 @@ public class SylviaBehaviour : MonoBehaviour
                 if(IsShadowMorphed && Prevent.CanDemorph)
                 {
                     IsShadowMorphed = !IsShadowMorphed;
+                    Debug.Log("B");
                 }
                 else if (IsShadowMorphed && !Prevent.CanDemorph)
                 {
-
+                    Debug.Log("C");
                 }
                 else
                 {
                     IsShadowMorphed = !IsShadowMorphed;
+                    Debug.Log("A");
                 }
             }
 
@@ -225,13 +229,14 @@ public class SylviaBehaviour : MonoBehaviour
                 //AirJumpForce and GroundJumpForce to make sure it will always be high enough to not interfere with jumping velocity
                 GetComponent<Rigidbody2D>().velocity = new Vector2(hold.x, Mathf.Clamp(hold.y, FallSpeedLimit, AirJumpForce + GroundJumpForce));
             }
-
+            //Checking all the animation code
             //Shadowmorph Code
             if (IsShadowMorphed != GetComponent<Animator>().GetBool("ShadowmorphActive"))
             {
                 //Have tags changes and go back to animation to see if you can have somethingTrigger when that animation ends
                 //So that it works. ALso see about tag things...Tired go to bed.
                 GetComponent<Animator>().SetBool("ShadowmorphActive", IsShadowMorphed);
+                ShadowmorphManually();
                 /*if (IsShadowMorphed)
                 {
 
@@ -250,6 +255,42 @@ public class SylviaBehaviour : MonoBehaviour
                 //SylviaShadowmorphTransitions();
             }
 
+            if(IsInAir != GetComponent<Animator>().GetBool("Jump"))
+            {
+                GetComponent<Animator>().SetBool("Jump", IsInAir);
+            }
+
+            if (IsGliding != GetComponent<Animator>().GetBool("IsGliding"))
+            {
+                GetComponent<Animator>().SetBool("IsGliding", IsGliding);
+            }
+
+            //Face Right
+            if(Input.GetKeyDown(KeyCode.D) && GetComponent<Animator>().GetBool("IsFacingLeft"))
+            {
+                GetComponent<Animator>().SetBool("IsFacingLeft", false);
+                IsFacingLeft = false;
+            }
+            //Face Left
+            if (Input.GetKeyDown(KeyCode.A) && !GetComponent<Animator>().GetBool("IsFacingLeft"))
+            {
+                GetComponent<Animator>().SetBool("IsFacingLeft", true);
+                IsFacingLeft = true;
+            }
+            if (!IsInAir)
+            {
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                {
+                    GetComponent<Animator>().SetBool("Walking", true);
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A) || IsInAir)
+            {
+                GetComponent<Animator>().SetBool("Walking", false);
+            }
+
+           
+
             /*if (IsShadowMorphed == false && !Prevent.CanDemorph)
             {
                 IsShadowMorphed = true;
@@ -262,6 +303,17 @@ public class SylviaBehaviour : MonoBehaviour
 
             }
         }*/
+    }
+    public void ShadowmorphManually()
+    {
+        if (IsFacingLeft)
+        {
+            GetComponent<Animator>().Play("LeftSylviaToShadowmorph");
+        }
+        else
+        {
+            GetComponent<Animator>().Play("RightSylviaToShadowmorph");
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

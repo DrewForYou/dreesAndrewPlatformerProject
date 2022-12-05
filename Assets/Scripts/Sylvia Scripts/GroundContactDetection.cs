@@ -47,6 +47,7 @@ public class GroundContactDetection : MonoBehaviour
                     {
                         Sylvia.IsInAir = false;
                         Sylvia.IsShadowMorphed = true;
+                        Sylvia.ShadowmorphManually();
                     }
                     //Debug.Log("Dived to Ground");
                 }
