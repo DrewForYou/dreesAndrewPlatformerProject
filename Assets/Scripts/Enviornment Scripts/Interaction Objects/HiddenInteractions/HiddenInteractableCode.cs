@@ -9,6 +9,7 @@ public class HiddenInteractableCode : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //This is for interactions that are scripted to happen. 
+        //Debug.Log("End");
         GetObject.gameObject.SetActive(true);
     }
 }

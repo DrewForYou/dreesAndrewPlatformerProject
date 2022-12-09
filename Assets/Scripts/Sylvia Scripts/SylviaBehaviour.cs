@@ -41,6 +41,7 @@ public class SylviaBehaviour : MonoBehaviour
     public Vector2 HoldVelocity;
     public bool PausedOrUnpaused;
     public float GrabGravity;
+    public bool OnPauseStop;
 
     public GameController GC;
     //public ShadowMorphBehaviour SMB;
@@ -66,6 +67,11 @@ public class SylviaBehaviour : MonoBehaviour
     {
         if (!GC.GamePaused)
         {
+            if(OnPauseStop)
+            {
+                GetComponent<Animator>().enabled = true;
+                OnPauseStop = false;
+            }
             //holds current velocity for each function
             Vector2 hold = GetComponent<Rigidbody2D>().velocity;
             GetComponent<Rigidbody2D>().velocity = new Vector2(Input.GetAxisRaw("Horizontal") * SylviaSpeed, hold.y);
@@ -296,6 +302,14 @@ public class SylviaBehaviour : MonoBehaviour
                 IsShadowMorphed = true;
             }*/
         }
+        else
+        {
+            if (!OnPauseStop)
+            {
+             GetComponent<Animator>().enabled = false;
+             OnPauseStop = true;   
+            }
+        }
         /*else
         {
             if(PausedOrUnpaused)
@@ -306,13 +320,27 @@ public class SylviaBehaviour : MonoBehaviour
     }
     public void ShadowmorphManually()
     {
-        if (IsFacingLeft)
+        if (IsShadowMorphed)
         {
-            GetComponent<Animator>().Play("LeftSylviaToShadowmorph");
+            if (IsFacingLeft)
+            {
+                GetComponent<Animator>().Play("LeftSylviaToShadowmorph");
+            }
+            else
+            {
+                GetComponent<Animator>().Play("RightSylviaToShadowmorph");
+            }
         }
         else
         {
-            GetComponent<Animator>().Play("RightSylviaToShadowmorph");
+            if (IsFacingLeft)
+            {
+                GetComponent<Animator>().Play("LeftShadowmorphToSylvia");
+            }
+            else
+            {
+                GetComponent<Animator>().Play("RightShadowmorphToSylvia");
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

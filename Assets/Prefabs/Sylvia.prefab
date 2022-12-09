@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d54a92feed8fdd24d8003ca78b50497f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -172,7 +172,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f79200cab607821478af51bf99fa4b3f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -372,7 +372,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c4b390fb2a03087429a903b6e9ed11d8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -714,6 +714,7 @@ MonoBehaviour:
   HoldVelocity: {x: 0, y: 0}
   PausedOrUnpaused: 0
   GrabGravity: 0
+  OnPauseStop: 0
   GC: {fileID: 0}
   GCD: {fileID: 6944743116979371828}
   Prevent: {fileID: 3032017498148182740}
@@ -878,7 +879,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.76, y: 0.13362932}
+  m_Size: {x: 2.74, y: 0.13362932}
   m_EdgeRadius: 0
 --- !u!114 &6944743116979371828
 MonoBehaviour:
@@ -939,7 +940,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9510e8b88d69ea043a3acc1713ab6c33, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.379
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
