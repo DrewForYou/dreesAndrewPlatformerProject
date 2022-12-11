@@ -242,7 +242,7 @@ public class SylviaBehaviour : MonoBehaviour
                 //Have tags changes and go back to animation to see if you can have somethingTrigger when that animation ends
                 //So that it works. ALso see about tag things...Tired go to bed.
                 GetComponent<Animator>().SetBool("ShadowmorphActive", IsShadowMorphed);
-                ShadowmorphManually();
+                //ShadowmorphManually();
                 /*if (IsShadowMorphed)
                 {
 
