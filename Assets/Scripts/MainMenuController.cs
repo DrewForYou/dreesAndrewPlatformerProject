@@ -18,4 +18,18 @@ public class MainMenuController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    void Update()
+    {
+        //Quit and Restrart
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            var currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }
+    }
 }
